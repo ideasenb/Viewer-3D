@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model viewer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    
+    <!-- Import the component -->
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
+
+    <style>
+      body {
+        margin: 0;
+      }
+      /* Ajustamos la altura para que el visor ocupe el espacio restante */
+      .viewer-row {
+        /* 100vh (altura total) - altura aproximada del navbar */
+        height: calc(100vh - 56px);
+      }
+      #main-viewer {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      .model-select-btn img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+
+   <nav class="navbar bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <span class="navbar-text">
+      Carlos Fernando Cortés Sandoval
+    </span>
+  </div>
+</nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <div class="container-fluid mt-3">
+      <div class="row viewer-row">
+        <!-- Columna para el visor principal -->
+        <div class="col-md-9 h-100">
+          <model-viewer
+            id="main-viewer"
+            alt="Visor principal de modelos 3D"
+            src="./assets/GLB/pinguinito.glb"
+            ar
+            shadow-intensity="1"
+            camera-controls
+            touch-action="pan-y"
+            autoplay
+          ></model-viewer>
+        </div>
+
+        <!-- Columna para la selección de modelos -->
+        <div class="col-md-3">
+          <h5>Selecciona un modelo</h5>
+          <div class="d-grid gap-3">
+
+            <!-- Botón para el modelo del Pinguino -->
+            <button class="btn btn-outline-secondary model-select-btn" data-src="./assets/GLB/pinguinito.glb">
+              <!-- RECUERDA: Cambia 'path/to/image1.jpg' por la ruta a una imagen de tu pinguino -->
+              <img src="./assets/IMG/pinguino.jpg" alt="Seleccionar Pinguino">
+            </button>
+
+            <!-- Botón para modelo de la Compu -->
+            <button class="btn btn-outline-secondary model-select-btn" data-src="./assets/GLB/compu.glb">
+              <img src="./assets/IMG/compu.jpg" alt="Seleccionar Computadora"> 
+            </button>
+
+            <!-- Botón para modelo de Chihiro -->
+            <button class="btn btn-outline-secondary model-select-btn" data-src="./assets/GLB/shihiro.glb">
+              <!-- RECUERDA: Cambia 'path/to/image3.jpg' por la ruta a una imagen de Chihiro -->
+              <img src="./assets/IMG/shihiro.jpg" alt="Seleccionar Chihiro"> 
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const viewer = document.getElementById('main-viewer');
+      const buttons = document.querySelectorAll('.model-select-btn');
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const newSrc = button.getAttribute('data-src');
+          viewer.src = newSrc;
+        });
+      });
+    </script>
+  </body>
+</html>
+
+    
